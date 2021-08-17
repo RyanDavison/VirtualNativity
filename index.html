@@ -1,0 +1,76 @@
+<html>
+<head>
+
+  <style>
+    #myGallery{
+      position:relative;
+      width:400px; /* Set your image width */
+      height:300px; /* Set your image height */
+    }
+    myGallery img{
+      display:block;
+      position:absolute;
+      top:0;
+      left:0;
+      float:left
+    }
+    #top{
+      position:absolute;
+      top:0;
+      left:0;
+      z-index:1;
+    }
+    #bottom{
+      position:absolute;
+      z-index:0;
+    }
+    #myGallery img.active{
+      display:block;
+    }
+
+    #clickme{
+	width:6em;
+        height:3em;
+        bottom: 5px;
+        left:5px;
+        position:absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="myGallery">
+    <img id="top" src="images/image4.png" />
+    <img id="bottom" src="images/image1.png" />
+  </div>
+  <button id="clickme">
+    Donate
+  </button>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  </script>
+  <script>
+    function swapImages(){
+      var $active = $('#myGallery .active');
+      var $next = ($('#myGallery .active').next().length > 0) ? $('#myGallery .active').next() : $('#myGallery img:first');
+      $active.fadeOut(function(){
+      $active.removeClass('active');
+      $next.fadeIn().addClass('active');
+      });
+    }
+
+    $("#clickme").click(function(){
+      console.log("clicked")
+      $( "#top" ).fadeTo( "slow" , 0, function() {
+        console.log("animation complete")
+        // Animation complete.
+      });
+    });
+
+    //$(document).ready(function(){
+      // Run our swapImages() function every 5secs
+      //setInterval('swapImages()', 5000);
+    //})
+  </script>
+</html>
